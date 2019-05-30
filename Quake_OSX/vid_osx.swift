@@ -7,21 +7,21 @@
 
 import Foundation
 
-struct VID
+class VID
 {
-    var screenWidth:Int32 = 320
-    var screenHeight:Int32 = 200
+    var screenWidth:Int = 320
+    var screenHeight:Int = 200
     
-    var glvr_mode:Int32 = 0
+    var glvr_mode:Int = 0
     
     var buffer:UnsafeMutablePointer<byte>! = nil;
     var zbuffer:UnsafeMutablePointer<CShort>! = nil;
     var surfcache:UnsafeMutablePointer<byte>! = nil;
     
     var d_8to16table:Array<ushort> = Array(repeating: 0, count: 256)
-    var d_8to24table:UnsafeMutablePointer<Int32>! = nil;
+    var d_8to24table:UnsafeMutablePointer<Int>! = nil;
     
-    func SetSize(width:Int32, height:Int32)
+    func SetSize(width:Int, height:Int)
     {
         
     }
@@ -38,7 +38,20 @@ struct VID
     
     func Init(palette:UnsafeMutablePointer<CUnsignedChar>!)
     {
+        buffer =  UnsafeMutablePointer<byte>.allocate(capacity: screenWidth * screenHeight)
+        zbuffer = UnsafeMutablePointer<CShort>.allocate(capacity: screenWidth * screenHeight)
+        d_8to24table = UnsafeMutablePointer<Int>.allocate(capacity: 256)
         
+        vid.maxwarpwidth = WARP_WIDTH;
+        vid.maxwarpheight = WARP_HEIGHT;
+        vid.conwidth = UInt32(vid_screenWidth);
+        vid.width = UInt32(vid_screenWidth);
+        vid.conheight = UInt32(vid_screenHeight);
+        vid.height = UInt32(vid_screenHeight);
+        vid.aspect = (Float(vid.height) / Float(vid.width)) * (320.0 / 240.0);
+        vid.numpages = 1;
+        vid.colormap = host_colormap;
+        vid.fullbright = 256 - LittleLong(*((int *)vid.colormap + 2048));
     }
     
     func Shutdown()
