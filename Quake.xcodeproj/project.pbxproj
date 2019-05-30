@@ -346,6 +346,7 @@
 		6D9F03FD1CE54211009AF81F /* net_loop.c in Sources */ = {isa = PBXBuildFile; fileRef = 2839AE351C5D6FFD00CEC48E /* net_loop.c */; };
 		6D9F03FE1CE54246009AF81F /* sv_move.c in Sources */ = {isa = PBXBuildFile; fileRef = 2839AE5F1C5D6FFD00CEC48E /* sv_move.c */; };
 		6D9F03FF1CE54403009AF81F /* gl_mesh.c in Sources */ = {isa = PBXBuildFile; fileRef = 288781551CD8406100AF4F24 /* gl_mesh.c */; };
+		D0B7E2AC229F8CC6001D2822 /* vid_osx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7E2AB229F8CC6001D2822 /* vid_osx.swift */; };
 		E56038248B4DADF42B20EF4C /* Pods_Quake_iOS_VR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74B0201B67718AA8FE70D43 /* Pods_Quake_iOS_VR.framework */; };
 /* End PBXBuildFile section */
 
@@ -750,6 +751,7 @@
 		6D9F03F71CE52ADB009AF81F /* gl_vidiosvr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gl_vidiosvr.c; sourceTree = "<group>"; };
 		6D9F03FB1CE5345A009AF81F /* net_ios_vr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = net_ios_vr.c; sourceTree = "<group>"; };
 		A74B0201B67718AA8FE70D43 /* Pods_Quake_iOS_VR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quake_iOS_VR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0B7E2AB229F8CC6001D2822 /* vid_osx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vid_osx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -873,6 +875,7 @@
 				6D54BA881C626F77004687A6 /* snd_osx.c */,
 				2839ADFA1C5D6F8B00CEC48E /* sys_osx.c */,
 				2839ADFB1C5D6F8B00CEC48E /* vid_osx.c */,
+				D0B7E2AB229F8CC6001D2822 /* vid_osx.swift */,
 			);
 			path = Quake_OSX;
 			sourceTree = "<group>";
@@ -1787,6 +1790,7 @@
 				2839AEA41C5D6FFD00CEC48E /* sv_move.c in Sources */,
 				2839AEA51C5D6FFD00CEC48E /* sv_phys.c in Sources */,
 				289A0AF01C6307C70007B2C4 /* net_osx.c in Sources */,
+				D0B7E2AC229F8CC6001D2822 /* vid_osx.swift in Sources */,
 				289A0AEE1C63074B0007B2C4 /* net_dgrm.c in Sources */,
 				2839AE9E1C5D6FFD00CEC48E /* r_surf.c in Sources */,
 				2839AE891C5D6FFD00CEC48E /* net_loop.c in Sources */,

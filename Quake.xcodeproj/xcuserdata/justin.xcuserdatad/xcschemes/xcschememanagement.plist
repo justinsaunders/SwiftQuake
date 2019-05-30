@@ -7,12 +7,12 @@
 		<key>QuakeEd.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>7</integer>
 		</dict>
 		<key>Quake_Asset_Generator.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>6</integer>
 		</dict>
 		<key>Quake_OSX.xcscheme_^#shared#^_</key>
 		<dict>
@@ -22,12 +22,12 @@
 		<key>Quake_iOS_VR.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Quake_tvOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>fakewad.xcscheme_^#shared#^_</key>
 		<dict>
@@ -37,7 +37,7 @@
 		<key>light.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>5</integer>
 		</dict>
 		<key>qbsp.xcscheme_^#shared#^_</key>
 		<dict>
