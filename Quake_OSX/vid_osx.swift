@@ -42,16 +42,22 @@ class VID
         zbuffer = UnsafeMutablePointer<CShort>.allocate(capacity: screenWidth * screenHeight)
         d_8to24table = UnsafeMutablePointer<Int>.allocate(capacity: 256)
         
-        vid.maxwarpwidth = WARP_WIDTH;
-        vid.maxwarpheight = WARP_HEIGHT;
-        vid.conwidth = UInt32(vid_screenWidth);
-        vid.width = UInt32(vid_screenWidth);
-        vid.conheight = UInt32(vid_screenHeight);
-        vid.height = UInt32(vid_screenHeight);
-        vid.aspect = (Float(vid.height) / Float(vid.width)) * (320.0 / 240.0);
-        vid.numpages = 1;
-        vid.colormap = host_colormap;
-        vid.fullbright = 256 - LittleLong(*((int *)vid.colormap + 2048));
+        vid.maxwarpwidth = WARP_WIDTH
+        vid.maxwarpheight = WARP_HEIGHT
+        vid.conwidth = UInt32(vid_screenWidth)
+        vid.width = UInt32(vid_screenWidth)
+        vid.conheight = UInt32(vid_screenHeight)
+        vid.height = UInt32(vid_screenHeight)
+        vid.aspect = (Float(vid.height) / Float(vid.width)) * (320.0 / 240.0)
+        vid.numpages = 1
+        vid.colormap = host_colormap
+        var tempColorMapVoid = UnsafeMutableRawPointer(vid.colormap) + 2048 * MemoryLayout<Int>.size
+        let value:Int = tempColorMapVoid.load(as: Int.self)
+        
+        //typealias LittleLongFunc = (@convention(c)(Int32) -> Int32)?
+        let ll = LittleLong;
+        
+        vid.fullbright = 256 - ll(value);
     }
     
     func Shutdown()
