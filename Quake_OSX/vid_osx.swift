@@ -51,13 +51,14 @@ class VID
         vid.aspect = (Float(vid.height) / Float(vid.width)) * (320.0 / 240.0)
         vid.numpages = 1
         vid.colormap = host_colormap
-        var tempColorMapVoid = UnsafeMutableRawPointer(vid.colormap) + 2048 * MemoryLayout<Int>.size
-        let value:Int = tempColorMapVoid.load(as: Int.self)
+        let tempColorMapVoid = UnsafeMutableRawPointer(vid.colormap) + 2048 * MemoryLayout<Int>.size
+        let value:Int32 = tempColorMapVoid.load(as: Int32.self)
         
-        //typealias LittleLongFunc = (@convention(c)(Int32) -> Int32)?
-        let ll = LittleLong;
-        
-        vid.fullbright = 256 - ll(value);
+        typealias LittleLongFunc = (@convention(c)(Int32) -> Int32)
+        let f:LittleLongFunc = LittleLong
+        vid.fullbright = 256 - f(value)
+    
+
     }
     
     func Shutdown()
