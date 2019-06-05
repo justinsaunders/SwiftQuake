@@ -51,6 +51,8 @@ class VID
         vid.aspect = (Float(vid.height) / Float(vid.width)) * (320.0 / 240.0)
         vid.numpages = 1
         vid.colormap = host_colormap
+        
+        //   vid.fullbright = 256 - LittleLong (*((int *)vid.colormap + 2048));
         let tempColorMapVoid = UnsafeMutableRawPointer(vid.colormap) + 2048 * MemoryLayout<Int>.size
         let value:Int32 = tempColorMapVoid.load(as: Int32.self)
         
@@ -58,7 +60,19 @@ class VID
         let f:LittleLongFunc = LittleLong
         vid.fullbright = 256 - f(value)
     
-
+        vid.buffer = buffer;
+        vid.conbuffer = buffer;
+        
+        vid.rowbytes = UInt32(vid_screenWidth);
+        vid.conrowbytes = vid_screenWidth;
+        
+        let surfecachesize = D_SurfaceCacheForRes(vid_screenWidth, vid_screenHeight)
+        
+        surfcache = UnsafeMutablePointer<byte>.allocate(capacity:Int(surfecachesize))
+        
+        D_InitCaches(surfcache, surfecachesize)
+        
+        SetPalette(palette: palette)
     }
     
     func Shutdown()
