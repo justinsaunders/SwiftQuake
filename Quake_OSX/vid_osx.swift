@@ -36,6 +36,7 @@ class VID
         self.SetPalette(palette: palette)
     }
     
+     @_cdecl("VID_Init")
     func Init(palette:UnsafeMutablePointer<CUnsignedChar>!)
     {
         buffer =  UnsafeMutablePointer<byte>.allocate(capacity: screenWidth * screenHeight)
@@ -77,10 +78,14 @@ class VID
     
     func Shutdown()
     {
-        
+        surfcache.deallocate();
+        d_8to24table.deallocate();
+        zbuffer.deallocate();
+        buffer.deallocate();
     }
     
     //void VID_Update (vrect_t *rects) {}
     //void D_BeginDirectRect (int x, int y, byte *pbitmap, int width, int height)
     //void D_EndDirectRect (int x, int y, int width, int height)
 }
+
