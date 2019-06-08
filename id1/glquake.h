@@ -370,7 +370,7 @@ extern GLfloat gl_projection_matrix[16];
 
 extern qboolean glvr_enabled;
 
-extern int glvr_mode;
+//extern int glvr_mode;
 
 extern int glvr_eyecount;
 extern int glvr_eyeindex;

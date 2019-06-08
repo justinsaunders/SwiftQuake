@@ -957,7 +957,7 @@ void SCR_UpdateScreen (void)
 		vrect.height = vid.height;
 		vrect.pnext = 0;
 	
-		VID_Update (&vrect);
+		//VID_Update (&vrect);
 	}
 	else if (scr_copytop)
 	{
@@ -967,7 +967,7 @@ void SCR_UpdateScreen (void)
 		vrect.height = vid.height - sb_lines;
 		vrect.pnext = 0;
 	
-		VID_Update (&vrect);
+		//VID_Update (&vrect);
 	}	
 	else
 	{
@@ -977,7 +977,7 @@ void SCR_UpdateScreen (void)
 		vrect.height = scr_vrect.height;
 		vrect.pnext = 0;
 	
-		VID_Update (&vrect);
+		//VID_Update (&vrect);
 	}
 }
 

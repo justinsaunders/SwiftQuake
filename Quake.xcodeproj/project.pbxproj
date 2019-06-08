@@ -57,7 +57,6 @@
 		2839ADFE1C5D6F8B00CEC48E /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2839ADF71C5D6F8B00CEC48E /* MetalView.swift */; };
 		2839ADFF1C5D6F8B00CEC48E /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 2839ADF91C5D6F8B00CEC48E /* Shaders.metal */; };
 		2839AE001C5D6F8B00CEC48E /* sys_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = 2839ADFA1C5D6F8B00CEC48E /* sys_osx.c */; };
-		2839AE011C5D6F8B00CEC48E /* vid_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = 2839ADFB1C5D6F8B00CEC48E /* vid_osx.c */; };
 		2839AE021C5D6F8B00CEC48E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2839ADFC1C5D6F8B00CEC48E /* ViewController.swift */; };
 		2839AE6C1C5D6FFD00CEC48E /* cd_null.c in Sources */ = {isa = PBXBuildFile; fileRef = 2839AE071C5D6FFD00CEC48E /* cd_null.c */; };
 		2839AE6D1C5D6FFD00CEC48E /* chase.c in Sources */ = {isa = PBXBuildFile; fileRef = 2839AE091C5D6FFD00CEC48E /* chase.c */; };
@@ -1745,7 +1744,6 @@
 			files = (
 				2839AE8A1C5D6FFD00CEC48E /* net_main.c in Sources */,
 				2839AE981C5D6FFD00CEC48E /* r_light.c in Sources */,
-				2839AE011C5D6F8B00CEC48E /* vid_osx.c in Sources */,
 				2839AEAA1C5D6FFD00CEC48E /* zone.c in Sources */,
 				2839AE781C5D6FFD00CEC48E /* d_edge.c in Sources */,
 				2839AE931C5D6FFD00CEC48E /* r_alias.c in Sources */,
