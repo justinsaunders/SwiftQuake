@@ -17,9 +17,10 @@ var vid_buffer:UnsafeMutablePointer<byte>! = nil;
 var zbuffer:UnsafeMutablePointer<CShort>! = nil;
 var surfcache:UnsafeMutablePointer<byte>! = nil;
 
-var d_8to16table:Array<ushort> = Array(repeating: 0, count: 256)
-@_cdecl("get_d_8to16table")
-func get_d_8to16table() -> Array<ushort>
+// Global variable exposed to C 
+var d_8to16table = UnsafeMutablePointer<CShort>.allocate(capacity: 256)
+@_cdecl("GET_d_8to16table")
+func GET_d_8to16table() -> UnsafeMutablePointer<CShort>
 {
     return d_8to16table;
 }

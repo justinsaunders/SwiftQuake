@@ -241,7 +241,7 @@ void R_GenSkyTile16 (void *pdest)
 		{
 			ofs = baseofs + ((x+xshift) & SKYMASK);
 
-			*pd = d_8to16table[(*(pnewsky + 128) &
+			*pd = GET_d_8to16table()[(*(pnewsky + 128) &
 					*(byte *)&bottommask[ofs]) |
 					*(byte *)&bottomsky[ofs]];
 			pnewsky++;

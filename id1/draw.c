@@ -201,21 +201,21 @@ void Draw_Character (int x, int y, int num)
 		while (drawline--)
 		{
 			if (source[0])
-				pusdest[0] = d_8to16table[source[0]];
+				pusdest[0] = GET_d_8to16table()[source[0]];
 			if (source[1])
-				pusdest[1] = d_8to16table[source[1]];
+				pusdest[1] = GET_d_8to16table()[source[1]];
 			if (source[2])
-				pusdest[2] = d_8to16table[source[2]];
+				pusdest[2] = GET_d_8to16table()[source[2]];
 			if (source[3])
-				pusdest[3] = d_8to16table[source[3]];
+				pusdest[3] = GET_d_8to16table()[source[3]];
 			if (source[4])
-				pusdest[4] = d_8to16table[source[4]];
+				pusdest[4] = GET_d_8to16table()[source[4]];
 			if (source[5])
-				pusdest[5] = d_8to16table[source[5]];
+				pusdest[5] = GET_d_8to16table()[source[5]];
 			if (source[6])
-				pusdest[6] = d_8to16table[source[6]];
+				pusdest[6] = GET_d_8to16table()[source[6]];
 			if (source[7])
-				pusdest[7] = d_8to16table[source[7]];
+				pusdest[7] = GET_d_8to16table()[source[7]];
 
 			source += 128;
 			pusdest += (vid.conrowbytes >> 1);
@@ -360,7 +360,7 @@ void Draw_Pic (int x, int y, qpic_t *pic)
 		{
 			for (u=0 ; u<pic->width ; u++)
 			{
-				pusdest[u] = d_8to16table[source[u]];
+				pusdest[u] = GET_d_8to16table()[source[u]];
 			}
 
 			pusdest += vid.rowbytes >> 1;
@@ -484,7 +484,7 @@ void Draw_TransPic (int x, int y, qpic_t *pic)
 
 				if (tbyte != TRANSPARENT_COLOR)
 				{
-					pusdest[u] = d_8to16table[tbyte];
+					pusdest[u] = GET_d_8to16table()[tbyte];
 				}
 			}
 
@@ -571,7 +571,7 @@ void Draw_TransPicTranslate (int x, int y, qpic_t *pic, byte *translation)
 
 				if (tbyte != TRANSPARENT_COLOR)
 				{
-					pusdest[u] = d_8to16table[tbyte];
+					pusdest[u] = GET_d_8to16table()[tbyte];
 				}
 			}
 
@@ -684,13 +684,13 @@ void Draw_ConsoleBackground (int lines)
 			fstep = 320*0x10000/vid.conwidth;
 			for (x=0 ; x<vid.conwidth ; x+=4)
 			{
-				pusdest[x] = d_8to16table[src[f>>16]];
+				pusdest[x] = GET_d_8to16table()[src[f>>16]];
 				f += fstep;
-				pusdest[x+1] = d_8to16table[src[f>>16]];
+				pusdest[x+1] = GET_d_8to16table()[src[f>>16]];
 				f += fstep;
-				pusdest[x+2] = d_8to16table[src[f>>16]];
+				pusdest[x+2] = GET_d_8to16table()[src[f>>16]];
 				f += fstep;
-				pusdest[x+3] = d_8to16table[src[f>>16]];
+				pusdest[x+3] = GET_d_8to16table()[src[f>>16]];
 				f += fstep;
 			}
 		}
@@ -776,7 +776,7 @@ void R_DrawRect16 (vrect_t *prect, int rowbytes, byte *psrc,
 				t = *psrc;
 				if (t != TRANSPARENT_COLOR)
 				{
-					*pdest = d_8to16table[t];
+					*pdest = GET_d_8to16table()[t];
 				}
 
 				psrc++;
@@ -793,7 +793,7 @@ void R_DrawRect16 (vrect_t *prect, int rowbytes, byte *psrc,
 		{
 			for (j=0 ; j<prect->width ; j++)
 			{
-				*pdest = d_8to16table[*psrc];
+				*pdest = GET_d_8to16table()[*psrc];
 				psrc++;
 				pdest++;
 			}
@@ -885,6 +885,7 @@ Draw_Fill
 Fills a box of pixels with a single color
 =============
 */
+
 void Draw_Fill (int x, int y, int w, int h, int c)
 {
 	byte			*dest;
@@ -901,7 +902,8 @@ void Draw_Fill (int x, int y, int w, int h, int c)
 	}
 	else
 	{
-		uc = d_8to16table[c];
+        short* t = GET_d_8to16table();
+		uc = t[c];
 
 		pusdest = (unsigned short *)vid.buffer + y * (vid.rowbytes >> 1) + x;
 		for (v=0 ; v<h ; v++, pusdest += (vid.rowbytes >> 1))
