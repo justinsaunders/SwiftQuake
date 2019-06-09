@@ -2,3 +2,12 @@
 /Pods
 /Quake_iOS_VR/quake106data.zip
 
+.DS_Store
+pak/.DS_Store
+pak/id1/config.cfg
+pak/id1/PAK0.PAK
+Quake.xcodeproj/xcuserdata/justin.xcuserdatad/xcschemes/xcschememanagement.plist
+Quake.xcworkspace/xcuserdata/justin.xcuserdatad/UserInterfaceState.xcuserstate
+Quake.xcworkspace/xcuserdata/justin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+Quake.xcodeproj/xcuserdata/justin.xcuserdatad/xcschemes/xcschememanagement.plist
+Quake.xcworkspace/xcuserdata/justin.xcuserdatad/UserInterfaceState.xcuserstate
