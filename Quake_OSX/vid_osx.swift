@@ -25,7 +25,12 @@ func GET_SWIFT_d_8to16table() -> UnsafeMutablePointer<CUnsignedShort>
     return d_8to16table;
 }
 
-var d_8to24table:UnsafeMutablePointer<Int>! = nil;
+var d_8to24table:UnsafeMutablePointer<UInt>! = nil;
+@_cdecl("GET_SWIFT_d_8to24table")
+func GET_SWIFT_d_8to24table() -> UnsafeMutablePointer<UInt>
+{
+    return d_8to24table;
+}
 
 @_cdecl("VID_SetSize")
 func VID_SetSize(width:Int, height:Int)
@@ -109,7 +114,7 @@ func VID_SetSize(width:Int, height:Int)
 func VID_SetPalette(palette:UnsafeMutablePointer<CUnsignedChar>!)
 {
     var pal:UnsafeMutablePointer<byte>! = palette
-    let table:UnsafeMutablePointer<Int>! = d_8to24table
+    let table:UnsafeMutablePointer<UInt>! = d_8to24table
     
     var r:UInt, g:UInt, b:UInt
     var v:UInt
@@ -124,7 +129,7 @@ func VID_SetPalette(palette:UnsafeMutablePointer<CUnsignedChar>!)
         pal += 3;
         
         v = (255 << 24) | (b << 16) | (g << 8) | r;
-        table[i] = Int(v);
+        table[i] = v;
     }
     d_8to24table[255] &= 0xFFFFFF;    // 255 is transparent
 }
@@ -140,7 +145,7 @@ func VID_Init(palette:UnsafeMutablePointer<CUnsignedChar>!)
 {
     vid_buffer =  UnsafeMutablePointer<byte>.allocate(capacity: vid_screenWidth * vid_screenHeight)
     zbuffer = UnsafeMutablePointer<CShort>.allocate(capacity: vid_screenWidth * vid_screenHeight)
-    d_8to24table = UnsafeMutablePointer<Int>.allocate(capacity: 256)
+    d_8to24table = UnsafeMutablePointer<UInt>.allocate(capacity: 256)
     
     vid.maxwarpwidth = WARP_WIDTH
     vid.maxwarpheight = WARP_HEIGHT

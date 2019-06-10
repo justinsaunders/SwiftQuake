@@ -58,7 +58,9 @@ extern	viddef_t	vid;				// global video state
 //extern	unsigned short	d_8to16table[256];
 extern short* GET_SWIFT_d_8to16table(void);
 
-extern	unsigned*	d_8to24table;
+//extern	unsigned*	d_8to24table;
+extern unsigned* GET_SWIFT_d_8to24table(void);
+
 extern void (*vid_menudrawfn)(void);
 extern void (*vid_menukeyfn)(int key);
 
