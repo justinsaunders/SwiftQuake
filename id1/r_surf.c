@@ -633,7 +633,7 @@ void R_GenTurbTile16 (pixel_t *pbasetex, void *pdest)
 		{	
 			s = (((j << 16) + turb[i & (CYCLE-1)]) >> 16) & 63;
 			t = (((i << 16) + turb[j & (CYCLE-1)]) >> 16) & 63;
-			*pd++ = GET_d_8to16table()[*(pbasetex + (t<<6) + s)];
+			*pd++ = GET_SWIFT_d_8to16table()[*(pbasetex + (t<<6) + s)];
 		}
 	}
 }

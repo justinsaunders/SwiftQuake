@@ -1365,7 +1365,7 @@ void * Mod_LoadAliasSkin (void * pin, int *pskinindex, int skinsize,
 		pusskin = (unsigned short *)pskin;
 
 		for (i=0 ; i<skinsize ; i++)
-			pusskin[i] = GET_d_8to16table()[pinskin[i]];
+			pusskin[i] = GET_SWIFT_d_8to16table()[pinskin[i]];
 	}
 	else
 	{
@@ -1706,7 +1706,7 @@ void * Mod_LoadSpriteFrame (void * pin, mspriteframe_t **ppframe)
 		ppixout = (unsigned short *)&pspriteframe->pixels[0];
 
 		for (i=0 ; i<size ; i++)
-			ppixout[i] = GET_d_8to16table()[ppixin[i]];
+			ppixout[i] = GET_SWIFT_d_8to16table()[ppixin[i]];
 	}
 	else
 	{

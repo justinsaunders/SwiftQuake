@@ -34,8 +34,10 @@ extern int my;
 
 void Sys_Cbuf_AddText(const char* text);
 
-void VID_SetSize(int width, int height);
+//void VID_SetSize(int width, int height);
 
 void Sys_Init(int argc, char* argv[]);
 
 void Sys_Frame();
+
+extern short *d_pzbuffer;

@@ -180,7 +180,7 @@ class ViewController: NSViewController, MTKViewDelegate
             previousWidth = width
             previousHeight = height
             
-            VID_SetSize(Int32(width), Int32(height))
+            VID_SetSize(width: Int(width), height: Int(height))
             
             let vid_aspect = Float(vid_screenWidth) / Float(vid_screenHeight)
             

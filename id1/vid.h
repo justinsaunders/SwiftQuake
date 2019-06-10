@@ -56,7 +56,7 @@ typedef struct
 extern	viddef_t	vid;				// global video state
 
 //extern	unsigned short	d_8to16table[256];
-extern short* GET_d_8to16table(void);
+extern short* GET_SWIFT_d_8to16table(void);
 
 extern	unsigned*	d_8to24table;
 extern void (*vid_menudrawfn)(void);

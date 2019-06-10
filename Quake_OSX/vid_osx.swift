@@ -19,8 +19,8 @@ var surfcache:UnsafeMutablePointer<byte>! = nil;
 
 // Global variable exposed to C
 var d_8to16table = UnsafeMutablePointer<CUnsignedShort>.allocate(capacity: 256)
-@_cdecl("GET_d_8to16table")
-func GET_d_8to16table() -> UnsafeMutablePointer<CUnsignedShort>
+@_cdecl("GET_SWIFT_d_8to16table")
+func GET_SWIFT_d_8to16table() -> UnsafeMutablePointer<CUnsignedShort>
 {
     return d_8to16table;
 }
@@ -30,7 +30,79 @@ var d_8to24table:UnsafeMutablePointer<Int>! = nil;
 @_cdecl("VID_SetSize")
 func VID_SetSize(width:Int, height:Int)
 {
+    D_FlushCaches();
     
+    if (surfcache != nil)
+    {
+        surfcache.deallocate();
+    }
+    
+    if (zbuffer != nil)
+    {
+        zbuffer.deallocate();
+    }
+    
+    if (vid_buffer != nil)
+    {
+        vid_buffer.deallocate();
+    }
+    
+    vid_screenWidth = width;
+    
+    if (vid_screenWidth < 320)
+    {
+        vid_screenWidth = 320;
+    }
+    
+    if (vid_screenWidth > 1280)
+    {
+        vid_screenWidth = 1280;
+    }
+    
+    vid_screenHeight = height;
+    
+    if (vid_screenHeight < 200)
+    {
+        vid_screenHeight = 200;
+    }
+    
+    if (vid_screenHeight > 960)
+    {
+        vid_screenHeight = 960;
+    }
+    
+    if (vid_screenHeight > vid_screenWidth)
+    {
+        vid_screenHeight = vid_screenWidth;
+    }
+    
+    vid_buffer = UnsafeMutablePointer<byte>.allocate(capacity: vid_screenWidth * vid_screenHeight)
+    
+    zbuffer = UnsafeMutablePointer<CShort>.allocate(capacity: vid_screenWidth * vid_screenHeight)
+    
+    vid.conwidth = UInt32(vid_screenWidth)
+    vid.width = UInt32(vid_screenWidth)
+    
+    vid.conheight = UInt32(vid_screenHeight)
+    
+    vid.height = UInt32(vid_screenHeight)
+    vid.aspect = (Float(vid.height) / Float(vid.width)) * (320.0 / 240.0)
+    
+    vid.buffer = vid_buffer;
+    vid.conbuffer = vid_buffer;
+
+    vid.rowbytes = UInt32(vid_screenWidth);
+    vid.conrowbytes = Int32(vid_screenWidth);
+    
+    d_pzbuffer = zbuffer;
+    
+    let surfcachesize = D_SurfaceCacheForRes(Int32(vid_screenWidth), Int32(vid_screenHeight))
+    
+    surfcache = UnsafeMutablePointer<byte>.allocate(capacity:Int(surfcachesize))
+    
+    D_InitCaches (surfcache, surfcachesize);
+    
+    vid.recalc_refdef = 1;
 }
 
 @_cdecl("VID_SetPalette")
@@ -94,11 +166,13 @@ func VID_Init(palette:UnsafeMutablePointer<CUnsignedChar>!)
     vid.rowbytes = UInt32(vid_screenWidth);
     vid.conrowbytes = Int32(vid_screenWidth);
     
-    let surfecachesize = D_SurfaceCacheForRes(Int32(vid_screenWidth), Int32(vid_screenHeight))
+    d_pzbuffer = zbuffer;
     
-    surfcache = UnsafeMutablePointer<byte>.allocate(capacity:Int(surfecachesize))
+    let surfcachesize = D_SurfaceCacheForRes(Int32(vid_screenWidth), Int32(vid_screenHeight))
     
-    D_InitCaches(surfcache, surfecachesize)
+    surfcache = UnsafeMutablePointer<byte>.allocate(capacity:Int(surfcachesize))
+    
+    D_InitCaches(surfcache, surfcachesize)
     
     VID_SetPalette(palette: palette)
 }
