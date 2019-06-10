@@ -17,10 +17,10 @@ var vid_buffer:UnsafeMutablePointer<byte>! = nil;
 var zbuffer:UnsafeMutablePointer<CShort>! = nil;
 var surfcache:UnsafeMutablePointer<byte>! = nil;
 
-// Global variable exposed to C 
-var d_8to16table = UnsafeMutablePointer<CShort>.allocate(capacity: 256)
+// Global variable exposed to C
+var d_8to16table = UnsafeMutablePointer<CUnsignedShort>.allocate(capacity: 256)
 @_cdecl("GET_d_8to16table")
-func GET_d_8to16table() -> UnsafeMutablePointer<CShort>
+func GET_d_8to16table() -> UnsafeMutablePointer<CUnsignedShort>
 {
     return d_8to16table;
 }
@@ -36,7 +36,25 @@ func VID_SetSize(width:Int, height:Int)
 @_cdecl("VID_SetPalette")
 func VID_SetPalette(palette:UnsafeMutablePointer<CUnsignedChar>!)
 {
+    var pal:UnsafeMutablePointer<byte>! = palette
+    let table:UnsafeMutablePointer<Int>! = d_8to24table
     
+    var r:UInt, g:UInt, b:UInt
+    var v:UInt
+  
+    //
+    // 8 8 8 encoding
+    //
+     for i in 0 ... 255 {
+        r = UInt(pal[0]);
+        g = UInt(pal[1]);
+        b = UInt(pal[2]);
+        pal += 3;
+        
+        v = (255 << 24) | (b << 16) | (g << 8) | r;
+        table[i] = Int(v);
+    }
+    d_8to24table[255] &= 0xFFFFFF;    // 255 is transparent
 }
 
 @_cdecl("VID_ShiftPalette")
